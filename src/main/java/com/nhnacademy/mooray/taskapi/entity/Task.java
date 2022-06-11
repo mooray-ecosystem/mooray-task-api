@@ -1,12 +1,23 @@
 package com.nhnacademy.mooray.taskapi.entity;
 
+import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Optional;
 
+import static java.time.LocalDate.now;
 import static javax.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
 @Table(name = "Tasks")
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Task {
 
     @Id
@@ -14,9 +25,9 @@ public class Task {
     @Column(name = "task_no")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "project_no")
-    private Project project;
+    // @ManyToOne
+    // @JoinColumn(name = "project_no")
+    // private Project project;
 
     @ManyToOne
     @JoinColumn(name = "milestone_no")
@@ -35,4 +46,11 @@ public class Task {
     @Column(name = "deleted_at")
     private LocalDate deletedDate;
 
+    public static Task create(Task originalTask, TaskUpdateRequest taskRequest) {
+        return Task.builder()
+                   .title(Optional.ofNullable(taskRequest.getTitle()).orElse(originalTask.title))
+                   .content(Optional.ofNullable(taskRequest.getContent()).orElse(originalTask.content))
+                   .updatedDate(now())
+                   .build();
+    }
 }
