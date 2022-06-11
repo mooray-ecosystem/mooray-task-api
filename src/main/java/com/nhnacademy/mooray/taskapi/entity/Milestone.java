@@ -1,9 +1,6 @@
 package com.nhnacademy.mooray.taskapi.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -14,9 +11,9 @@ public class Milestone {
     @Column(name = "milestone_no")
     private Long id;
 
-    // @OneToOne
-    // @JoinColumn(name = "project_no")
-    // private Project project;
+    @OneToOne
+    @JoinColumn(name = "project_no")
+    private Project project;
 
     private String title;
 
