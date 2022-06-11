@@ -2,7 +2,7 @@ package com.nhnacademy.mooray.taskapi.controller;
 
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
-import com.nhnacademy.mooray.taskapi.service.TaskService;
+import com.nhnacademy.mooray.taskapi.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class TaskRestController {
         // FIXME: Remove logging
         log.debug("[TaskRestController.getTasks]");
 
-        MoorayResult result = taskService.getTasks();
+        MoorayResult result = taskService.retrieveTasks();
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
@@ -50,7 +50,7 @@ public class TaskRestController {
         // FIXME: Remove logging
         log.debug("[TaskRestController.getTasks]");
 
-        MoorayResult result = taskService.getTasks();
+        MoorayResult result = taskService.retrieveTasks();
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
