@@ -14,14 +14,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = TaskRestController.class)
 class TaskRestControllerTest {
@@ -44,7 +44,7 @@ class TaskRestControllerTest {
         // given
         BDDMockito.given(projectService.createProject(any(ProjectCreationRequest.class)))
                   .willReturn(mock(MoorayResult.class));
-        BDDMockito.given(taskService.createTask(anyLong(), any(TaskCreationRequest.class)))
+        BDDMockito.given(taskService.createTask(any(TaskCreationRequest.class)))
                   .willReturn(mock(MoorayResult.class));
 
         // boolean success1 = BDDMockito.doReturn(MoorayResult.class)
@@ -63,6 +63,7 @@ class TaskRestControllerTest {
                     .andDo(print())
                     .andExpect(status().isCreated())
                     .andExpect(content().contentType(APPLICATION_JSON));
+                    // .andExpect(jsonPath("$.isSuccess", equalTo(true)));
     }
 
     @DisplayName("프로젝트 특정 멤버가 존재하는 업무를 정상적으로 조회합니다.")
