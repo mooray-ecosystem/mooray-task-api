@@ -8,6 +8,6 @@ public interface ProjectService {
 
     MoorayResult createProject(ProjectCreationRequest projectRequest);
 
-    MoorayResult updateProject(ProjectUpdateRequest projectRequest);
+    MoorayResult updateProject(Long id, ProjectUpdateRequest projectRequest);
 
 }

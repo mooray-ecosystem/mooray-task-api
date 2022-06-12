@@ -37,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Transactional
     @Override
-    public MoorayResult updateProject(ProjectUpdateRequest projectRequest) {
+    public MoorayResult updateProject(Long id, ProjectUpdateRequest projectRequest) {
         return null;
     }
 

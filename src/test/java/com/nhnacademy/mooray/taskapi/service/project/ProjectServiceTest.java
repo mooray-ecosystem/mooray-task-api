@@ -2,6 +2,8 @@ package com.nhnacademy.mooray.taskapi.service.project;
 
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
+import com.nhnacademy.mooray.taskapi.dto.project.ProjectUpdateRequest;
+import com.nhnacademy.mooray.taskapi.entity.Project;
 import com.nhnacademy.mooray.taskapi.repository.project.ProjectRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,16 +14,19 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 
-// Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
-// https://stackoverflow.com/questions/42947613/how-to-resolve-unneccessary-stubbing-exception
-@ExtendWith(MockitoExtension.class)
+// ISSUE: Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
 // @MockitoSettings(strictness = Strictness.LENIENT)
+// SEE: https://stackoverflow.com/questions/42947613/how-to-resolve-unneccessary-stubbing-exception
+@ExtendWith(MockitoExtension.class)
 @Transactional
 class ProjectServiceTest {
 
@@ -72,12 +77,26 @@ class ProjectServiceTest {
         assertThat(result).isNotNull();
         assertFalse(result.isSuccess());
 
-        // BDDMockito.verify(projectRepository, times(1)).count();
+        BDDMockito.verify(projectRepository, times(0))
+                  .save(any());
     }
 
+    @DisplayName("프로젝트 수정")
     @Test
     void updateProject() {
+        // given
+        BDDMockito.given(projectRepository.findById(1L))
+                  .willReturn(Optional.ofNullable(mock(Project.class)));
 
+        // when
+        MoorayResult result = projectService.updateProject(1L, ProjectUpdateRequest.sample());
+
+        // then
+        assertThat(result).isNotNull();
+        assertTrue(result.isSuccess());
+
+        BDDMockito.verify(projectRepository, times(1))
+                  .save(any());
     }
 
 }
