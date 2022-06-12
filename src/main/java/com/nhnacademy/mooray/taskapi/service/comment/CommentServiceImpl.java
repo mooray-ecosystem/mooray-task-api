@@ -24,13 +24,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Transactional
     @Override
-    public MoorayResult createComment(Long projectId, Long taskId, CommentCreationRequest commentRequest) {
-        Task foundTask = taskRepository.findById(taskId).orElseThrow(RuntimeException::new);
+    public MoorayResult<Comment> createComment(Long projectId, Long taskId, CommentCreationRequest commentRequest) {
+        Task foundTask = taskRepository.findById(taskId)
+                                       .orElseThrow(RuntimeException::new);
 
         Comment comment = Comment.create(foundTask, commentRequest);
         Comment savedComment = commentRepository.save(comment);
 
-        Map<String, Object> payload = new HashMap<>();
+        Map<String, Comment> payload = new HashMap<>();
         payload.put("data", savedComment);
 
         return MoorayResult.success("성공적으로 댓글을 작성했습니다.", payload);
