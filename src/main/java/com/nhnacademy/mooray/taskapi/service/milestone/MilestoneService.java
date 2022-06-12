@@ -1,4 +1,4 @@
-package com.nhnacademy.mooray.taskapi.service;
+package com.nhnacademy.mooray.taskapi.service.milestone;
 
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.milestone.MilestoneCreationRequest;
@@ -15,7 +15,7 @@ public interface MilestoneService {
 
     MoorayResult<Milestone> retrieveMilestone(Long projectId, Long milestoneId);
 
-    MoorayResult<Milestone> updateMilestone(Long projectId, Long milestoneId, MilestoneUpdateRequest taskRequest);
+    MoorayResult<Milestone> updateMilestone(Long projectId, Long milestoneId, MilestoneUpdateRequest milestoneRequest);
 
     MoorayResult<Boolean> deleteMilestone(Long projectId, Long milestoneId);
 

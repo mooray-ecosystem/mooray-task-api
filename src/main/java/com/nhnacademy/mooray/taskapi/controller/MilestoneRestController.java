@@ -4,7 +4,7 @@ import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.milestone.MilestoneCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.milestone.MilestoneUpdateRequest;
 import com.nhnacademy.mooray.taskapi.entity.Milestone;
-import com.nhnacademy.mooray.taskapi.service.MilestoneService;
+import com.nhnacademy.mooray.taskapi.service.milestone.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
