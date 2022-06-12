@@ -20,6 +20,9 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public MoorayResult createTask(TaskCreationRequest taskRequest) {
+        // Mockito.when(projectService.createProject(any(ProjectCreationRequest.class)))
+        //        .thenReturn(MoorayResult.success(anyString(), anyMap()));
+
         return null;
     }
 
@@ -27,7 +30,7 @@ public class TaskServiceImpl implements TaskService {
     public MoorayResult retrieveTasks() {
         List<Task> tasks = taskRepository.findAll();
         // TODO: payload
-        return MoorayResult.success();
+        return MoorayResult.success("", null);
     }
 
     @Override
@@ -36,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskRepository.findById(id)
                                   .orElseThrow(RuntimeException::new);
 
-        return MoorayResult.success();
+        return MoorayResult.success("", null);
     }
 
     @Transactional
@@ -52,7 +55,7 @@ public class TaskServiceImpl implements TaskService {
         // 3. 업데이트 친다.
         Task savedTask = taskRepository.save(task);
 
-        return MoorayResult.success();
+        return MoorayResult.success("", null);
     }
 
     @Transactional
@@ -61,7 +64,7 @@ public class TaskServiceImpl implements TaskService {
         // TODO: 삭제가 안되는 경우 로직 추가
         taskRepository.deleteById(id);
 
-        return MoorayResult.success();
+        return MoorayResult.success("", null);
     }
 
 }
