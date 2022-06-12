@@ -3,6 +3,7 @@ package com.nhnacademy.mooray.taskapi.controller;
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
+import com.nhnacademy.mooray.taskapi.entity.Task;
 import com.nhnacademy.mooray.taskapi.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -26,13 +28,13 @@ public class TaskRestController {
     private final TaskService taskService;
 
     @PostMapping("/projects/{id}/tasks")
-    public ResponseEntity<MoorayResult> createTask(@PathVariable Long id,
-                                                   @Valid @RequestBody TaskCreationRequest taskRequest) {
+    public ResponseEntity<MoorayResult<Task>> createTask(@PathVariable Long id,
+                                                         @Valid @RequestBody TaskCreationRequest taskRequest) {
 
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter createTask(..)");
 
-        MoorayResult result = taskService.createTask(id, taskRequest);
+        MoorayResult<Task> result = taskService.createTask(id, taskRequest);
 
         return ResponseEntity.status(CREATED)
                              .contentType(APPLICATION_JSON)
@@ -40,11 +42,11 @@ public class TaskRestController {
     }
 
     @GetMapping("/projects/{id}/tasks")
-    public ResponseEntity<MoorayResult> retrieveTasks() {
+    public ResponseEntity<MoorayResult<List<Task>>> retrieveTasks(@PathVariable("project-id") Long projectId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTasks()");
 
-        MoorayResult result = taskService.retrieveTasks();
+        MoorayResult<List<Task>> result = taskService.retrieveTasks(projectId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
@@ -52,37 +54,39 @@ public class TaskRestController {
     }
 
     @GetMapping("/projects/{project-id}/tasks/{task-id}")
-    public ResponseEntity<MoorayResult> retrieveTask(@PathVariable("project-id") Long projectId,
-                                                     @PathVariable("task-id") Long taskId) {
+    public ResponseEntity<MoorayResult<Task>> retrieveTask(@PathVariable("project-id") Long projectId,
+                                                           @PathVariable("task-id") Long taskId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTask(..)");
 
-        MoorayResult result = taskService.retrieveTask(projectId);
+        MoorayResult<Task> result = taskService.retrieveTask(projectId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
                              .body(result);
     }
 
-    @PutMapping("/tasks/{id}")
-    public ResponseEntity<MoorayResult> updateTask(@PathVariable Long id,
-                                                   @Valid @RequestBody TaskUpdateRequest taskRequest) {
+    @PutMapping("/projects/{project-id}/tasks/{task-id}")
+    public ResponseEntity<MoorayResult<Task>> updateTask(@PathVariable("project-id") Long projectId,
+                                                         @PathVariable("task-id") Long taskId,
+                                                         @Valid @RequestBody TaskUpdateRequest taskRequest) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTask(..)");
 
-        MoorayResult result = taskService.updateTask(id, taskRequest);
+        MoorayResult<Task> result = taskService.updateTask(projectId, taskRequest);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
                              .body(result);
     }
 
-    @DeleteMapping("/tasks/{id}")
-    public ResponseEntity<MoorayResult> deleteTask(@PathVariable Long id) {
+    @DeleteMapping("/projects/{project-id}/tasks/{task-id}")
+    public ResponseEntity<MoorayResult<Boolean>> deleteTask(@PathVariable("project-id") Long projectId,
+                                                         @PathVariable("task-id") Long taskId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 
-        MoorayResult result = taskService.deleteTask(id);
+        MoorayResult<Boolean> result = taskService.deleteTask(taskId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
