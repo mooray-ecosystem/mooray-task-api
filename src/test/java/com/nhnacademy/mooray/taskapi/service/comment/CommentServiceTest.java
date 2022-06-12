@@ -23,6 +23,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.spy;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,14 +49,17 @@ class CommentServiceTest {
         // 1. 업무(Task)는 특정 프로젝트(Project)에 귀속되어 있으므로 프로젝트 mocking
         project = spy(Project.create(ProjectCreationRequest.sample()));
         BDDMockito.lenient()
-                  .when(projectRepository.findById(1L))
+                  .when(projectRepository.findById(anyLong()))
                   .thenReturn(Optional.of(project));
 
         // 2. 댓글 또한 특정 업무(Task)에 귀속되어 있으므로 업무 mocking
         task = spy(Task.create(project, spy(TaskCreationRequest.sample())));
         BDDMockito.lenient()
-                  .when(taskRepository.findById(1L))
+                  .when(taskRepository.findById(anyLong()))
                   .thenReturn(Optional.of(task));
+
+        // Contributor: eastheat10
+        BDDMockito.given(task.getId()).willReturn(1L);
     }
 
     @DisplayName("성공적으로 특정 업무에 댓글 작성")
@@ -77,7 +81,7 @@ class CommentServiceTest {
         assertThat(result).isNotNull();
     }
 
-    @DisplayName("")
+    @DisplayName("성공적으로 특정 업무에 대해 댓글을 조회합니다.")
     @Test
     void testRetrieveComments() {
     }

@@ -41,7 +41,7 @@ public class TaskRestController {
                              .body(result);
     }
 
-    @GetMapping("/projects/{id}/tasks")
+    @GetMapping("/projects/{project-id}/tasks")
     public ResponseEntity<MoorayResult<List<Task>>> retrieveTasks(@PathVariable("project-id") Long projectId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTasks()");
@@ -82,7 +82,7 @@ public class TaskRestController {
 
     @DeleteMapping("/projects/{project-id}/tasks/{task-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteTask(@PathVariable("project-id") Long projectId,
-                                                         @PathVariable("task-id") Long taskId) {
+                                                            @PathVariable("task-id") Long taskId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 

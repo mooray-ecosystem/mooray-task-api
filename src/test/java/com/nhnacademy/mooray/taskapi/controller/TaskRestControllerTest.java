@@ -1,26 +1,19 @@
 package com.nhnacademy.mooray.taskapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
-import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
+import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
 import com.nhnacademy.mooray.taskapi.service.project.ProjectService;
 import com.nhnacademy.mooray.taskapi.service.task.TaskService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,11 +32,6 @@ class TaskRestControllerTest {
 
     @MockBean
     ProjectService projectService;
-
-    @BeforeEach
-    void setUp() {
-        // MoorayResult result = spy(projectService.createProject(any(ProjectCreationRequest.class)));
-    }
 
     @DisplayName("프로젝트 특정 멤버가 업무를 정상적으로 등록합니다.")
     @Test
@@ -78,22 +66,51 @@ class TaskRestControllerTest {
 
     @DisplayName("프로젝트 특정 멤버가 존재하는 업무를 정상적으로 조회합니다.")
     @Test
-    void retrieveTasks() {
+    void retrieveTasks() throws Exception {
+        String requestBody = objectMapper.writeValueAsString(TaskCreationRequest.sample());
+
+        this.mockMvc.perform(get("/projects/{project-id}/tasks", 1L)
+                                     .contentType(APPLICATION_JSON)
+                                     .content(requestBody))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(APPLICATION_JSON));
     }
 
-    @DisplayName("")
+    @DisplayName("프로젝트 특정 멤버가 존재하는 특정 업무 1건을 정상적으로 조회합니다.")
     @Test
-    void retrieveTask() {
+    void retrieveTask() throws Exception {
+        String requestBody = objectMapper.writeValueAsString(TaskCreationRequest.sample());
+
+        this.mockMvc.perform(get("/projects/{project-id}/tasks/{task-id}", 1L, 1L)
+                                     .contentType(APPLICATION_JSON)
+                                     .content(requestBody))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(APPLICATION_JSON));
     }
 
-    @DisplayName("")
+    @DisplayName("프로젝트 특정 멤버가 존재하는 특정 업무 1건에 대해 정상적으로 수정합니다.")
     @Test
-    void updateTask() {
+    void updateTask() throws Exception {
+        String requestBody = objectMapper.writeValueAsString(TaskUpdateRequest.sample());
+
+        this.mockMvc.perform(put("/projects/{project-id}/tasks/{task-id}", 1L, 1L)
+                                     .contentType(APPLICATION_JSON)
+                                     .content(requestBody))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(APPLICATION_JSON));
+
     }
 
-    @DisplayName("")
+    @DisplayName("프로젝트 특정 멤버가 존재하는 특정 업무 1건에 대해 정상적으로 삭제합니다.")
     @Test
-    void deleteTask() {
+    void deleteTask() throws Exception {
+        this.mockMvc.perform(delete("/projects/{project-id}/tasks/{task-id}", 1L, 1L))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(APPLICATION_JSON));
     }
 
 }
