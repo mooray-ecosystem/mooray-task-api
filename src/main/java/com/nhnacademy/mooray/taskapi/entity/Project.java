@@ -1,6 +1,7 @@
 package com.nhnacademy.mooray.taskapi.entity;
 
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
+import com.nhnacademy.mooray.taskapi.dto.project.ProjectUpdateRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static java.time.LocalDate.now;
 import static javax.persistence.EnumType.STRING;
@@ -44,6 +46,15 @@ public class Project {
                       .status(ProjectStatus.valueOf(projectRequest.getStatus()))
                       .adminId(projectRequest.getAdminId())
                       .createdDate(now())
+                      .build();
+    }
+
+    public static Project create(Project originalProject, ProjectUpdateRequest projectRequest) {
+        return Project.builder()
+                      .adminId(Optional.ofNullable(projectRequest.getAdminId()).orElse(originalProject.adminId))
+                      .name(Optional.ofNullable(projectRequest.getName()).orElse(originalProject.name))
+                      .status(Optional.of(ProjectStatus.valueOf(projectRequest.getStatus()))
+                                      .orElse(originalProject.status))
                       .build();
     }
 
