@@ -1,5 +1,6 @@
 package com.nhnacademy.mooray.taskapi.entity;
 
+import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +26,9 @@ public class Task {
     @Column(name = "task_no")
     private Long id;
 
-    // @ManyToOne
-    // @JoinColumn(name = "project_no")
-    // private Project project;
+    @ManyToOne
+    @JoinColumn(name = "project_no")
+    private Project project;
 
     @ManyToOne
     @JoinColumn(name = "milestone_no")
@@ -45,6 +46,16 @@ public class Task {
 
     @Column(name = "deleted_at")
     private LocalDate deletedDate;
+
+    public static Task create(Project project, TaskCreationRequest taskRequest) {
+        return Task.builder()
+                   .project(project)
+                   .title(taskRequest.getTitle())
+                   .content(taskRequest.getContent())
+                   .createdDate(now())
+                   .updatedDate(now())
+                   .build();
+    }
 
     public static Task create(Task originalTask, TaskUpdateRequest taskRequest) {
         return Task.builder()

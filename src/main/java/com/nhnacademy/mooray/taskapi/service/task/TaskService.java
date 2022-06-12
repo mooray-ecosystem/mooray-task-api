@@ -6,7 +6,7 @@ import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
 
 public interface TaskService {
 
-    MoorayResult createTask(TaskCreationRequest taskRequest);
+    MoorayResult createTask(Long projectId, TaskCreationRequest taskRequest);
 
     MoorayResult retrieveTasks();
 

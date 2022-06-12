@@ -25,8 +25,9 @@ public class ProjectRestController {
     private final ProjectService projectService;
 
     @PostMapping("/projects")
-    public ResponseEntity<Map<String, Object>> createProject(
-            @Valid @RequestBody ProjectCreationRequest projectRequest) {
+    public ResponseEntity<Map<String, Object>>
+    createProject(@Valid @RequestBody ProjectCreationRequest projectRequest) {
+
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter createProject");
 
@@ -40,7 +41,7 @@ public class ProjectRestController {
     }
 
     @PutMapping("/projects/{id}")
-    public ResponseEntity<Map<String, Object>> updateProject(@PathVariable Long id,
+    public ResponseEntity<Map<String, Object>> updateProject(@PathVariable("id") Long id,
                                                              @Valid @RequestBody ProjectUpdateRequest projectRequest) {
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter updateProject");
