@@ -24,4 +24,13 @@ public class ProjectCreationRequest {
     @NotNull
     private final String status;
 
+    public static ProjectCreationRequest sample() {
+        return ProjectCreationRequest.builder()
+                                     .adminId(1L)
+                                     .name("2022-03-김해-웹서비스개발-1기")
+                                     .description("김해 우수 인재 육성을 위한 프로젝트입니다.")
+                                     .status("ACTIVATED")
+                                     .build();
+    }
+
 }

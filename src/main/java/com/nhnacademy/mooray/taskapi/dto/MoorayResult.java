@@ -12,10 +12,14 @@ import java.util.Map;
 public class MoorayResult {
 
     // private static final Map<String, Object> header;
-    // private final Map<String, Object> payload;
 
     private final boolean isSuccess;
     private final String message;
+    private final Map<String, Object> payload;
+
+    public static MoorayResult fail(String message) {
+        return new MoorayResult(false, message, null);
+    }
 
     // public MoorayResult() {
     //     this.header = new HashMap<>();
@@ -31,8 +35,8 @@ public class MoorayResult {
         return isSuccess;
     }
 
-    public static MoorayResult success() {
-        return new MoorayResult(true, "프로젝트를 성공적으로 생성했습니다.");
+    public static MoorayResult success(String message, Map<String, Object> payload) {
+        return new MoorayResult(true, message, payload);
     }
 
     public static Map<String, Object> header() {
