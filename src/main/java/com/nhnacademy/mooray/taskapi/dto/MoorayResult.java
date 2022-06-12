@@ -1,21 +1,25 @@
 package com.nhnacademy.mooray.taskapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@AllArgsConstructor
 @Getter
-public class MoorayResult {
+public class MoorayResult<V> {
 
     // private static final Map<String, Object> header;
 
     private final boolean isSuccess;
     private final String message;
-    private final Map<String, Object> payload;
+    private final Map<String, V> payload;
+
+    public MoorayResult(boolean isSuccess, String message, Map<String, V> payload) {
+        this.isSuccess = isSuccess;
+        this.message = message;
+        this.payload = payload;
+    }
 
     public static MoorayResult fail(String message) {
         return new MoorayResult(false, message, null);
@@ -35,8 +39,8 @@ public class MoorayResult {
         return isSuccess;
     }
 
-    public static MoorayResult success(String message, Map<String, Object> payload) {
-        return new MoorayResult(true, message, payload);
+    public static <V> MoorayResult<V> success(String message, Map<String, V> payload) {
+        return new MoorayResult<>(true, message, payload);
     }
 
     public static Map<String, Object> header() {
