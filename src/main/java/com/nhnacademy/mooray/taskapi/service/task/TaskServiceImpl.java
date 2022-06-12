@@ -20,6 +20,9 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public MoorayResult createTask(TaskCreationRequest taskRequest) {
+        // Mockito.when(projectService.createProject(any(ProjectCreationRequest.class)))
+        //        .thenReturn(MoorayResult.success(anyString(), anyMap()));
+
         return null;
     }
 
