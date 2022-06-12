@@ -3,7 +3,7 @@ package com.nhnacademy.mooray.taskapi.controller;
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentUpdateRequest;
-import com.nhnacademy.mooray.taskapi.service.CommentService;
+import com.nhnacademy.mooray.taskapi.service.comment.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.nhnacademy.mooray.taskapi.service;
+package com.nhnacademy.mooray.taskapi.service.comment;
 
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentCreationRequest;
