@@ -24,12 +24,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Transactional
     @Override
-    public MoorayResult createTask(Long projectId, TaskCreationRequest taskRequest) {
+    public MoorayResult<Task> createTask(Long projectId, TaskCreationRequest taskRequest) {
         // Mockito.when(projectService.createProject(any(ProjectCreationRequest.class)))
         //        .thenReturn(MoorayResult.success(anyString(), anyMap()));
         // if (!projectRepository.existsById(projectId)) {
         //     FIXME: Custom exc.
-            // return MoorayResult.fail("프로젝트가 존재하지 않습니다.");
+        // return MoorayResult.fail("프로젝트가 존재하지 않습니다.");
         // }
 
         Project foundProject = projectRepository.findById(projectId).get();
@@ -37,31 +37,37 @@ public class TaskServiceImpl implements TaskService {
 
         Task savedTask = taskRepository.save(task);
 
-        Map<String, Object> payload = new HashMap<>();
+        Map<String, Task> payload = new HashMap<>();
         payload.put("data", savedTask);
 
         return MoorayResult.success("업무를 성공적으로 생성했습니다.", payload);
     }
 
     @Override
-    public MoorayResult retrieveTasks() {
+    public MoorayResult<List<Task>> retrieveTasks(Long projectId) {
         List<Task> tasks = taskRepository.findAll();
-        // TODO: payload
-        return MoorayResult.success("", null);
+
+        Map<String, List<Task>> payload = new HashMap<>();
+        payload.put("data", tasks);
+
+        return MoorayResult.success("업무 목록을 성공적으로 조회했습니다.", payload);
     }
 
     @Override
-    public MoorayResult retrieveTask(Long id) {
+    public MoorayResult<Task> retrieveTask(Long projectId) {
         // FIXME: Custom Exception
-        Task task = taskRepository.findById(id)
+        Task task = taskRepository.findById(projectId)
                                   .orElseThrow(RuntimeException::new);
 
-        return MoorayResult.success("", null);
+        Map<String, Task> payload = new HashMap<>();
+        payload.put("data", task);
+
+        return MoorayResult.success("", payload);
     }
 
     @Transactional
     @Override
-    public MoorayResult updateTask(Long id, TaskUpdateRequest taskRequest) {
+    public MoorayResult<Task> updateTask(Long id, TaskUpdateRequest taskRequest) {
         // 1. 수정할 놈을 아이디로 찾는다.
         Task foundTask = taskRepository.findById(id)
                                        .orElseThrow(RuntimeException::new);
@@ -72,16 +78,22 @@ public class TaskServiceImpl implements TaskService {
         // 3. 업데이트 친다.
         Task savedTask = taskRepository.save(task);
 
-        return MoorayResult.success("", null);
+        Map<String, Task> payload = new HashMap<>();
+        payload.put("data", savedTask);
+
+        return MoorayResult.success("", payload);
     }
 
     @Transactional
     @Override
-    public MoorayResult deleteTask(Long id) {
+    public MoorayResult<Boolean> deleteTask(Long id) {
         // TODO: 삭제가 안되는 경우 로직 추가
         taskRepository.deleteById(id);
 
-        return MoorayResult.success("", null);
+        Map<String, Boolean> payload = new HashMap<>();
+        payload.put("data", true);
+
+        return MoorayResult.success("", payload);
     }
 
 }

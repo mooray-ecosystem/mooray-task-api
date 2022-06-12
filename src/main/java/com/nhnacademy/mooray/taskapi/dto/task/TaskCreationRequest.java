@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 import static java.time.LocalDate.now;
@@ -21,15 +22,14 @@ public class TaskCreationRequest {
     @NotBlank
     private String content;
 
-    // @NotNull
+    @NotNull
     private LocalDate createdDate;
 
-    // @NotNull
+    @NotNull
     private LocalDate updatedDate;
 
     public static TaskCreationRequest sample() {
         return TaskCreationRequest.builder()
-                                  // .id(1L)
                                   .title("REST-API 설계 및 개발")
                                   .content("특강이 있어요.")
                                   .createdDate(now())
