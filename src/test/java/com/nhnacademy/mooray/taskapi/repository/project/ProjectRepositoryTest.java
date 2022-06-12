@@ -20,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 
+// MEMO: DataJpaTest 내부에 @Transactional 이 있음
 @DataJpaTest
-@Transactional
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectRepositoryTest {
 
