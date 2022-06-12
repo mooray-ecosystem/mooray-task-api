@@ -1,10 +1,21 @@
 package com.nhnacademy.mooray.taskapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Entity
 @Table(name = "Milestones")
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
+@Builder
+@Getter
 public class Milestone {
 
     @Id
