@@ -6,12 +6,14 @@ import com.nhnacademy.mooray.taskapi.dto.project.ProjectUpdateRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
 import com.nhnacademy.mooray.taskapi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
@@ -38,7 +40,20 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public MoorayResult updateProject(Long id, ProjectUpdateRequest projectRequest) {
-        return null;
+        // FIXME: Refactor logging
+        log.error("c.n.mooray.taskapi.service.project.ProejctServiceImpl: Enter updateProject(..)");
+
+        // FIXME: Custom exc.
+        Project foundProject = projectRepository.findById(id)
+                                                .orElseThrow(RuntimeException::new);
+
+        Project updatedProject = Project.create(foundProject, projectRequest);
+        Project savedProject = projectRepository.save(updatedProject);
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("data", savedProject);
+
+        return MoorayResult.success("프로젝트 상태를 성공적으로 수정했습니다", payload);
     }
 
 }

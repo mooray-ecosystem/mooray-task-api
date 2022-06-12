@@ -81,7 +81,7 @@ class ProjectServiceTest {
                   .save(any());
     }
 
-    @DisplayName("프로젝트 수정")
+    @DisplayName("성공적으로 프로젝트 상태를 수정")
     @Test
     void updateProject() {
         // given
