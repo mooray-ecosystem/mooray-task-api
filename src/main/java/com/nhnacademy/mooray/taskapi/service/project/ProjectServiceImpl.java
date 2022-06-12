@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Transactional
     @Override
-    public MoorayResult createProject(ProjectCreationRequest projectRequest) {
+    public MoorayResult<Project> createProject(ProjectCreationRequest projectRequest) {
         if (projectRepository.existsByName(projectRequest.getName())) {
             // FIXME: Custom exc.
             return MoorayResult.fail("프로젝트가 이미 존재합니다.");
@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = Project.create(projectRequest);
         Project savedProject = projectRepository.save(project);
 
-        Map<String, Object> payload = new HashMap<>();
+        Map<String, Project> payload = new HashMap<>();
         payload.put("data", savedProject);
 
         return MoorayResult.success("프로젝트를 성공적으로 생성했습니다.", payload);
@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Transactional
     @Override
-    public MoorayResult updateProject(Long id, ProjectUpdateRequest projectRequest) {
+    public MoorayResult<Project> updateProject(Long id, ProjectUpdateRequest projectRequest) {
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.service.project.ProejctServiceImpl: Enter updateProject(..)");
 
@@ -50,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
         Project updatedProject = Project.create(foundProject, projectRequest);
         Project savedProject = projectRepository.save(updatedProject);
 
-        Map<String, Object> payload = new HashMap<>();
+        Map<String, Project> payload = new HashMap<>();
         payload.put("data", savedProject);
 
         return MoorayResult.success("프로젝트 상태를 성공적으로 수정했습니다", payload);
