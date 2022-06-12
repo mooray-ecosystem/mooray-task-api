@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ProjectRestController.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+// @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectRestControllerTest {
 
     @Autowired
@@ -35,7 +35,7 @@ class ProjectRestControllerTest {
     @MockBean
     ProjectService projectService;
 
-    @Order(1)
+    // @Order(1)
     @DisplayName("성공적으로 프로젝트 생성")
     @Test
     void createProject() throws Exception {
@@ -66,7 +66,7 @@ class ProjectRestControllerTest {
         // .andExpect(jsonPath("$.isSuccess", equalTo(true)));
     }
 
-    @Order(2)
+    // @Order(2)
     @DisplayName("성공적으로 프로젝트 정보 수정")
     @Test
     void updateProject() throws Exception {
