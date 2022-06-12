@@ -4,7 +4,7 @@ import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectUpdateRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
-import com.nhnacademy.mooray.taskapi.repository.project.ProjectRepository;
+import com.nhnacademy.mooray.taskapi.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

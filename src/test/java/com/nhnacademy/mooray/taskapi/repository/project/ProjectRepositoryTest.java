@@ -2,23 +2,21 @@ package com.nhnacademy.mooray.taskapi.repository.project;
 
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
+import com.nhnacademy.mooray.taskapi.repository.ProjectRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.core.annotation.Order;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.times;
 
 // MEMO: DataJpaTest 내부에 @Transactional 이 있음
 @DataJpaTest

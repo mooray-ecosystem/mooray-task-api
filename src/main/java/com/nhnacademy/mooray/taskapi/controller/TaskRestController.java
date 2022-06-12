@@ -39,7 +39,7 @@ public class TaskRestController {
                              .body(result);
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("/projects/{id}/tasks")
     public ResponseEntity<MoorayResult> retrieveTasks() {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTasks()");
@@ -51,12 +51,13 @@ public class TaskRestController {
                              .body(result);
     }
 
-    @GetMapping("/tasks/{id}")
-    public ResponseEntity<MoorayResult> retrieveTask(@PathVariable Long id) {
+    @GetMapping("/projects/{project-id}/tasks/{task-id}")
+    public ResponseEntity<MoorayResult> retrieveTask(@PathVariable("project-id") Long projectId,
+                                                     @PathVariable("task-id") Long taskId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTask(..)");
 
-        MoorayResult result = taskService.retrieveTask(id);
+        MoorayResult result = taskService.retrieveTask(projectId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)

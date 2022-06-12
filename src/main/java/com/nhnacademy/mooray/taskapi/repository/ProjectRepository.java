@@ -1,4 +1,4 @@
-package com.nhnacademy.mooray.taskapi.repository.project;
+package com.nhnacademy.mooray.taskapi.repository;
 
 import com.nhnacademy.mooray.taskapi.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
