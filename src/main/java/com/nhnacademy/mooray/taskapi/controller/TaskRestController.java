@@ -27,7 +27,8 @@ public class TaskRestController {
 
     @PostMapping("/projects/{id}/tasks")
     public ResponseEntity<MoorayResult> createTask(@PathVariable Long id,
-                                                   @RequestBody TaskCreationRequest taskRequest) {
+                                                   @Valid @RequestBody TaskCreationRequest taskRequest) {
+
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter createTask(..)");
 
