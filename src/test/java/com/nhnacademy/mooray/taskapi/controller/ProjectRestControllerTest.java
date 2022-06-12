@@ -12,14 +12,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = ProjectRestController.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -70,21 +71,21 @@ class ProjectRestControllerTest {
     @Test
     void updateProject() throws Exception {
         // given
-        BDDMockito.given(projectService.updateProject(any(ProjectUpdateRequest.class)))
+        BDDMockito.given(projectService.updateProject(anyLong(), any(ProjectUpdateRequest.class)))
                   .willReturn(mock(MoorayResult.class));
 
         // ready
         String requestBody = objectMapper.writeValueAsString(ProjectUpdateRequest.sample());
 
         // when
-        this.mockMvc.perform(put("/projects")
+        this.mockMvc.perform(put("/projects/{id}", 1L)
                                      .contentType(APPLICATION_JSON)
                                      .content(requestBody))
                     // then
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(APPLICATION_JSON));
-                    // .andExpect(jsonPath("$.isSuccess", equalTo(true)));
+        // .andExpect(jsonPath("$.isSuccess", equalTo(true)));
     }
 
 }

@@ -7,10 +7,7 @@ import com.nhnacademy.mooray.taskapi.service.project.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,7 +25,8 @@ public class ProjectRestController {
     private final ProjectService projectService;
 
     @PostMapping("/projects")
-    public ResponseEntity<Map<String, Object>> createProject(@Valid @RequestBody ProjectCreationRequest projectRequest) {
+    public ResponseEntity<Map<String, Object>> createProject(
+            @Valid @RequestBody ProjectCreationRequest projectRequest) {
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter createProject");
 
@@ -41,12 +39,13 @@ public class ProjectRestController {
                              .body(projectResponse.getPayload());
     }
 
-    @PutMapping("/projects")
-    public ResponseEntity<Map<String, Object>> updateProject(@Valid @RequestBody ProjectUpdateRequest projectRequest) {
+    @PutMapping("/projects/{id}")
+    public ResponseEntity<Map<String, Object>> updateProject(@PathVariable Long id,
+                                                             @Valid @RequestBody ProjectUpdateRequest projectRequest) {
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter updateProject");
 
-        MoorayResult projectResponse = projectService.updateProject(projectRequest);
+        MoorayResult projectResponse = projectService.updateProject(id, projectRequest);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
