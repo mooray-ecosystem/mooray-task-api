@@ -21,7 +21,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor
 @Builder
-@Getter
+@Getter // DataJpaTest 에서 테스트 용도
 public class Project {
 
     @Id

@@ -4,6 +4,7 @@ import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor
 @Builder
+@Getter
 public class Task {
 
     @Id

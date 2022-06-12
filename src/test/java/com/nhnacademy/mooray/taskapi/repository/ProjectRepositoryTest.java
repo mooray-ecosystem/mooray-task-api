@@ -1,4 +1,4 @@
-package com.nhnacademy.mooray.taskapi.repository.project;
+package com.nhnacademy.mooray.taskapi.repository;
 
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
