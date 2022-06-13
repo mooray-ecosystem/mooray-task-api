@@ -4,6 +4,7 @@ import com.nhnacademy.mooray.taskapi.dto.comment.CommentCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentUpdateRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @AllArgsConstructor
 @Builder
+@Getter
 public class Comment {
 
     @Id
