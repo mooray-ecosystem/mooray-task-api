@@ -1,4 +1,4 @@
-package com.nhnacademy.mooray.taskapi.entity;
+package com.nhnacademy.mooray.taskapi.domain;
 
 public enum ProjectStatus {
     ACTIVATED,
