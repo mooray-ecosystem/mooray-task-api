@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class TagCreationRequest {
 
     @NotBlank
-    private final String name;
+    private String name;
 
     public static TagCreationRequest sample() {
         return new TagCreationRequest("Java");

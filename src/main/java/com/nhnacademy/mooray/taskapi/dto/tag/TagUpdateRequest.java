@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class TagUpdateRequest {
 
     @NotBlank
-    private final String name;
+    private String name;
 
     public static TagUpdateRequest sample() {
         return new TagUpdateRequest("Scala");
