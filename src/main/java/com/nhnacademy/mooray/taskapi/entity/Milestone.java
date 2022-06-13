@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -22,6 +23,7 @@ import static lombok.AccessLevel.PROTECTED;
 public class Milestone {
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "milestone_no")
     private Long id;
 
