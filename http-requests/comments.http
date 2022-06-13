@@ -1,0 +1,30 @@
+POST http://localhost:8080/projects/1/tasks/1/comments HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "REST-API 설계 및 개발",
+  "content": "특강이 있어요."
+}
+
+###
+
+GET http://localhost:8080/projects/1/tasks/1/comments HTTP/1.1
+
+###
+
+GET http://localhost:8080/projects/1/tasks/1/comments/1 HTTP/1.1
+
+###
+
+
+PUT http://localhost:8080/projects/1/tasks/1
+Content-Type: application/json
+
+{
+  "title": "파이널 프로젝트",
+  "content": "좋은 코드를 작성해봅시다."
+}
+
+###
+
+DELETE http://localhost:8080/projects/1/tasks/1

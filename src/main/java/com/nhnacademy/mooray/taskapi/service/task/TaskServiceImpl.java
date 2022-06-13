@@ -5,6 +5,7 @@ import com.nhnacademy.mooray.taskapi.dto.task.TaskCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.task.TaskUpdateRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
 import com.nhnacademy.mooray.taskapi.entity.Task;
+import com.nhnacademy.mooray.taskapi.exception.NotFoundTaskException;
 import com.nhnacademy.mooray.taskapi.repository.ProjectRepository;
 import com.nhnacademy.mooray.taskapi.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,14 +56,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public MoorayResult<Task> retrieveTask(Long projectId) {
-        // FIXME: Custom Exception
         Task task = taskRepository.findById(projectId)
-                                  .orElseThrow(RuntimeException::new);
+                                  .orElseThrow(NotFoundTaskException::new);
 
         Map<String, Task> payload = new HashMap<>();
         payload.put("data", task);
 
-        return MoorayResult.success("", payload);
+        return MoorayResult.success("업무를 성공적으로 조회했습니다.", payload);
     }
 
     @Transactional
@@ -81,7 +81,7 @@ public class TaskServiceImpl implements TaskService {
         Map<String, Task> payload = new HashMap<>();
         payload.put("data", savedTask);
 
-        return MoorayResult.success("", payload);
+        return MoorayResult.success("업무를 성공적으로 수정했습니다.", payload);
     }
 
     @Transactional
@@ -93,7 +93,7 @@ public class TaskServiceImpl implements TaskService {
         Map<String, Boolean> payload = new HashMap<>();
         payload.put("data", true);
 
-        return MoorayResult.success("", payload);
+        return MoorayResult.success("업무를 성공적으로 삭제했습니다.", payload);
     }
 
 }

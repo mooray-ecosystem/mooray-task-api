@@ -3,17 +3,20 @@ package com.nhnacademy.mooray.taskapi.service.comment;
 import com.nhnacademy.mooray.taskapi.dto.MoorayResult;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentCreationRequest;
 import com.nhnacademy.mooray.taskapi.dto.comment.CommentUpdateRequest;
+import com.nhnacademy.mooray.taskapi.entity.Comment;
+
+import java.util.List;
 
 public interface CommentService {
 
-    MoorayResult createComment(Long projectId, Long taskId, CommentCreationRequest commentRequest);
+    MoorayResult<Comment> createComment(Long projectId, Long taskId, CommentCreationRequest commentRequest);
 
-    MoorayResult retrieveComments(Long projectId, Long taskId);
+    MoorayResult<List<Comment>> retrieveComments(Long projectId, Long taskId);
 
-    MoorayResult retrieveComment(Long projectId, Long taskId, Long commentId);
+    MoorayResult<Comment> retrieveComment(Long projectId, Long taskId, Long commentId);
 
-    MoorayResult updateComment(Long projectId, Long taskId, Long commentId, CommentUpdateRequest commentRequest);
+    MoorayResult<Comment> updateComment(Long projectId, Long taskId, Long commentId, CommentUpdateRequest commentRequest);
 
-    MoorayResult deleteComment(Long projectId, Long taskId, Long commentId);
+    MoorayResult<Boolean> deleteComment(Long projectId, Long taskId, Long commentId);
 
 }

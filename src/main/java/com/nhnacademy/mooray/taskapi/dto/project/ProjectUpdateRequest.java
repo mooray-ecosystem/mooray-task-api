@@ -1,6 +1,6 @@
 package com.nhnacademy.mooray.taskapi.dto.project;
 
-import com.nhnacademy.mooray.taskapi.entity.ProjectStatus;
+import com.nhnacademy.mooray.taskapi.domain.ProjectStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
