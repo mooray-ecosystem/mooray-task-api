@@ -55,7 +55,7 @@ class TaskRestControllerTest {
         // when
         String requestBody = objectMapper.writeValueAsString(TaskCreationRequest.sample());
 
-        this.mockMvc.perform(post("/projects/{id}/tasks", 1L)
+        this.mockMvc.perform(post("/projects/{project-id}/tasks", 1L)
                                      .contentType(APPLICATION_JSON)
                                      .content(requestBody))
                     .andDo(print())
@@ -67,11 +67,7 @@ class TaskRestControllerTest {
     @DisplayName("프로젝트 특정 멤버가 존재하는 업무를 정상적으로 조회합니다.")
     @Test
     void retrieveTasks() throws Exception {
-        String requestBody = objectMapper.writeValueAsString(TaskCreationRequest.sample());
-
-        this.mockMvc.perform(get("/projects/{project-id}/tasks", 1L)
-                                     .contentType(APPLICATION_JSON)
-                                     .content(requestBody))
+        this.mockMvc.perform(get("/projects/{project-id}/tasks", 1L))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(APPLICATION_JSON));
@@ -80,11 +76,7 @@ class TaskRestControllerTest {
     @DisplayName("프로젝트 특정 멤버가 존재하는 특정 업무 1건을 정상적으로 조회합니다.")
     @Test
     void retrieveTask() throws Exception {
-        String requestBody = objectMapper.writeValueAsString(TaskCreationRequest.sample());
-
-        this.mockMvc.perform(get("/projects/{project-id}/tasks/{task-id}", 1L, 1L)
-                                     .contentType(APPLICATION_JSON)
-                                     .content(requestBody))
+        this.mockMvc.perform(get("/projects/{project-id}/tasks/{task-id}", 1L, 1L))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(APPLICATION_JSON));
