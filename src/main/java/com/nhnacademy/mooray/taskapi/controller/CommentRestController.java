@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -26,8 +25,8 @@ public class CommentRestController {
 
     @PostMapping("/projects/{project-id}/tasks/{task-id}/comments")
     public ResponseEntity<MoorayResult<Comment>> createComment(@PathVariable("project-id") Long projectId,
-                                                             @PathVariable("task-id") Long taskId,
-                                                             @RequestBody CommentCreationRequest commentRequest) {
+                                                               @PathVariable("task-id") Long taskId,
+                                                               @RequestBody CommentCreationRequest commentRequest) {
 
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter createComment");
@@ -42,7 +41,7 @@ public class CommentRestController {
 
     @GetMapping("/projects/{project-id}/tasks/{task-id}/comments")
     public ResponseEntity<MoorayResult<List<Comment>>> retrieveComments(@PathVariable("project-id") Long projectId,
-                                                                @PathVariable("task-id") Long taskId) {
+                                                                        @PathVariable("task-id") Long taskId) {
 
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter retrieveComments");
@@ -57,8 +56,8 @@ public class CommentRestController {
 
     @GetMapping("/projects/{project-id}/tasks/{task-id}/comments/{comment-id}")
     public ResponseEntity<MoorayResult<Comment>> retrieveComment(@PathVariable("project-id") Long projectId,
-                                                               @PathVariable("task-id") Long taskId,
-                                                               @PathVariable("comment-id") Long commentId) {
+                                                                 @PathVariable("task-id") Long taskId,
+                                                                 @PathVariable("comment-id") Long commentId) {
 
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter retrieveComment");
@@ -73,9 +72,9 @@ public class CommentRestController {
 
     @PutMapping("/projects/{project-id}/tasks/{task-id}/comments/{comment-id}")
     public ResponseEntity<MoorayResult<Comment>> updateComment(@PathVariable("project-id") Long projectId,
-                                                             @PathVariable("task-id") Long taskId,
-                                                             @PathVariable("comment-id") Long commentId,
-                                                             @RequestBody CommentUpdateRequest commentRequest) {
+                                                               @PathVariable("task-id") Long taskId,
+                                                               @PathVariable("comment-id") Long commentId,
+                                                               @RequestBody CommentUpdateRequest commentRequest) {
 
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter updateComment");
@@ -90,8 +89,8 @@ public class CommentRestController {
 
     @DeleteMapping("/projects/{project-id}/tasks/{task-id}/comments/{comment-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteComment(@PathVariable("project-id") Long projectId,
-                                                             @PathVariable("task-id") Long taskId,
-                                                             @PathVariable("comment-id") Long commentId) {
+                                                               @PathVariable("task-id") Long taskId,
+                                                               @PathVariable("comment-id") Long commentId) {
 
         // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter deleteComment");

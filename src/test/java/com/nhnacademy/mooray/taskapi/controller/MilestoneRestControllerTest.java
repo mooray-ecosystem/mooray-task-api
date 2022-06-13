@@ -30,9 +30,6 @@ class MilestoneRestControllerTest {
     @MockBean
     MilestoneService milestoneService;
 
-    @MockBean
-    ProjectService projectService;
-
     @DisplayName("생성된 프로젝트에서 마일스톤을 생성합니다.")
     @Test
     void testCreateMilestone() throws Exception {

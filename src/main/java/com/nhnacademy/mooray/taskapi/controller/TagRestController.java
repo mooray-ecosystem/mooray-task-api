@@ -53,42 +53,42 @@ public class TagRestController {
                              .body(result);
     }
 
-    @GetMapping("/projects/{project-id}/tags/{milestone-id}")
+    @GetMapping("/projects/{project-id}/tags/{tag-id}")
     public ResponseEntity<MoorayResult<Tag>> retrieveTag(@PathVariable("project-id") Long projectId,
-                                                         @PathVariable("milestone-id") Long milestoneId) {
+                                                         @PathVariable("tag-id") Long tagId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTag(...)");
 
-        MoorayResult<Tag> result = tagService.retrieveTag(projectId, milestoneId);
+        MoorayResult<Tag> result = tagService.retrieveTag(projectId, tagId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
                              .body(result);
     }
 
-    @PutMapping("/projects/{project-id}/tags/{milestone-id}")
+    @PutMapping("/projects/{project-id}/tags/{tag-id}")
     public ResponseEntity<MoorayResult<Tag>> updateTaskTag(@PathVariable("project-id") Long projectId,
-                                                           @PathVariable("milestone-id") Long milestoneId,
+                                                           @PathVariable("tag-id") Long tagId,
                                                            @Valid @RequestBody
                                                            TagUpdateRequest tagRequest) {
 
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTag(..)");
 
-        MoorayResult<Tag> result = tagService.updateTag(projectId, milestoneId, tagRequest);
+        MoorayResult<Tag> result = tagService.updateTag(projectId, tagId, tagRequest);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)
                              .body(result);
     }
 
-    @DeleteMapping("/projects/{project-id}/tags/{milestone-id}")
+    @DeleteMapping("/projects/{project-id}/tags/{tag-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteTag(@PathVariable("project-id") Long projectId,
-                                                           @PathVariable("milestone-id") Long milestoneId) {
+                                                           @PathVariable("tag-id") Long tagId) {
         // FIXME: Remove logging
         log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 
-        MoorayResult<Boolean> result = tagService.deleteTag(projectId, milestoneId);
+        MoorayResult<Boolean> result = tagService.deleteTag(projectId, tagId);
 
         return ResponseEntity.status(OK)
                              .contentType(APPLICATION_JSON)

@@ -12,8 +12,8 @@ public class TagUpdateRequest {
     @NotBlank
     private final String name;
 
-    public static TagCreationRequest sample() {
-        return new TagCreationRequest("Scala");
+    public static TagUpdateRequest sample() {
+        return new TagUpdateRequest("Scala");
     }
 
 }
