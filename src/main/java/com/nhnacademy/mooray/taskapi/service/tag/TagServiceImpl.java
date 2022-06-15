@@ -52,7 +52,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public MoorayResult<Tag> retrieveTag(Long projectId, Long tagId) {
-        // FIXME: projectId?
         Tag foundTag = tagRepository.findById(tagId)
                                     .orElseThrow(NotFoundTagException::new);
 
@@ -85,7 +84,6 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public MoorayResult<Boolean> deleteTag(Long projectId, Long tagId) {
-        // FIXME: projectId?
         tagRepository.deleteById(tagId);
 
         Map<String, Boolean> payload = new HashMap<>();

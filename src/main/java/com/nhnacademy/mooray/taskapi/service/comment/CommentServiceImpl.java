@@ -29,12 +29,7 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     @Override
     public MoorayResult<Comment> createComment(Long projectId, Long taskId, CommentCreationRequest commentRequest) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter createComment(...)");
-
-        // if (taskRepository.existsById(taskId)) {
-        //     return MoorayResult.fail("댓글이 이미 존재합니다.");
-        // }
+        log.info("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter createComment(...)");
 
         Task foundTask = taskRepository.findById(taskId)
                                        .orElseThrow(RuntimeException::new);
@@ -50,8 +45,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public MoorayResult<List<Comment>> retrieveComments(Long projectId, Long taskId) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter retrieveComments()");
+        log.info("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter retrieveComments()");
 
         List<Comment> comments = commentRepository.findAll();
 
@@ -63,8 +57,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public MoorayResult<Comment> retrieveComment(Long projectId, Long taskId, Long commentId) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter retrieveComment(...)");
+        log.info("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter retrieveComment(...)");
 
         Comment comment = commentRepository.findById(commentId)
                                            .orElseThrow(RuntimeException::new);
@@ -79,8 +72,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public MoorayResult<Comment> updateComment(Long projectId, Long taskId, Long commentId,
                                                CommentUpdateRequest commentRequest) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter updateComment(...)");
+
+        log.info("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter updateComment(...)");
 
         // 1. 수정할 댓글을 아이디로 찾는다.
         Comment foundComment = commentRepository.findById(commentId)
@@ -102,8 +95,7 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     @Override
     public MoorayResult<Boolean> deleteComment(Long projectId, Long taskId, Long commentId) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter deleteComment(...)");
+        log.info("c.n.mooray.taskapi.service.comment.CommentServiceImpl: Enter deleteComment(...)");
 
         commentRepository.deleteById(commentId);
 

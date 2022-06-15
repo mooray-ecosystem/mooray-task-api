@@ -28,8 +28,7 @@ public class CommentRestController {
                                                                @PathVariable("task-id") Long taskId,
                                                                @RequestBody CommentCreationRequest commentRequest) {
 
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter createComment");
+        log.info("c.n.mooray.taskapi.controller.CommentRestController: Enter createComment");
 
         MoorayResult<Comment> result = commentService.createComment(projectId, taskId, commentRequest);
 
@@ -43,7 +42,6 @@ public class CommentRestController {
     public ResponseEntity<MoorayResult<List<Comment>>> retrieveComments(@PathVariable("project-id") Long projectId,
                                                                         @PathVariable("task-id") Long taskId) {
 
-        // FIXME: Refactor logging
         log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter retrieveComments");
 
         MoorayResult<List<Comment>> result = commentService.retrieveComments(projectId, taskId);
@@ -59,8 +57,7 @@ public class CommentRestController {
                                                                  @PathVariable("task-id") Long taskId,
                                                                  @PathVariable("comment-id") Long commentId) {
 
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter retrieveComment");
+        log.info("c.n.mooray.taskapi.controller.CommentRestController: Enter retrieveComment");
 
         MoorayResult<Comment> result = commentService.retrieveComment(projectId, taskId, commentId);
 
@@ -76,8 +73,7 @@ public class CommentRestController {
                                                                @PathVariable("comment-id") Long commentId,
                                                                @RequestBody CommentUpdateRequest commentRequest) {
 
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter updateComment");
+        log.info("c.n.mooray.taskapi.controller.CommentRestController: Enter updateComment");
 
         MoorayResult<Comment> result = commentService.updateComment(projectId, taskId, commentId, commentRequest);
 
@@ -92,8 +88,7 @@ public class CommentRestController {
                                                                @PathVariable("task-id") Long taskId,
                                                                @PathVariable("comment-id") Long commentId) {
 
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.CommentRestController: Enter deleteComment");
+        log.info("c.n.mooray.taskapi.controller.CommentRestController: Enter deleteComment");
 
         MoorayResult<Boolean> result = commentService.deleteComment(projectId, taskId, commentId);
 

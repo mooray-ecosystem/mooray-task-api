@@ -24,7 +24,6 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public MoorayResult<Project> createProject(ProjectCreationRequest projectRequest) {
         if (projectRepository.existsByName(projectRequest.getName())) {
-            // FIXME: Custom exc.
             return MoorayResult.fail("프로젝트가 이미 존재합니다.");
         }
 
@@ -40,10 +39,8 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public MoorayResult<Project> updateProject(Long id, ProjectUpdateRequest projectRequest) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.service.project.ProejctServiceImpl: Enter updateProject(..)");
+        log.info("c.n.mooray.taskapi.service.project.ProejctServiceImpl: Enter updateProject(..)");
 
-        // FIXME: Custom exc.
         Project foundProject = projectRepository.findById(id)
                                                 .orElseThrow(RuntimeException::new);
 

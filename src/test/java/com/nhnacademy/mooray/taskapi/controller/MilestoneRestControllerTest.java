@@ -55,7 +55,6 @@ class MilestoneRestControllerTest {
     @DisplayName("생성된 특정 프로젝트에서 존재하는 마일스톤 1건을 정상적으로 조회합니다.")
     @Test
     void testRetrieveMilestone() throws Exception {
-        // FIXME: requestBody
         String requestBody = objectMapper.writeValueAsString(MilestoneUpdateRequest.sample());
 
         this.mockMvc.perform(get("/projects/{project-id}/milestones/{milestone-id}", 1L, 1L)

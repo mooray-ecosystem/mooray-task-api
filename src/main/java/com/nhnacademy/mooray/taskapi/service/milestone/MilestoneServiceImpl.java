@@ -30,6 +30,7 @@ public class MilestoneServiceImpl implements MilestoneService {
                                                 .orElseThrow(NotFoundMilestoneException::new);
         Milestone milestone = Milestone.create(foundProject, milestoneRequest);
 
+        // CF: mapstruct
         Milestone savedMilestone = milestoneRepository.save(milestone);
 
         Map<String, Milestone> payload = new HashMap<>();
@@ -50,7 +51,6 @@ public class MilestoneServiceImpl implements MilestoneService {
 
     @Override
     public MoorayResult<Milestone> retrieveMilestone(Long projectId, Long milestoneId) {
-        // FIXME: projectId?
         Milestone foundMilestone = milestoneRepository.findById(milestoneId)
                                                       .orElseThrow(NotFoundMilestoneException::new);
 
@@ -84,7 +84,6 @@ public class MilestoneServiceImpl implements MilestoneService {
     @Transactional
     @Override
     public MoorayResult<Boolean> deleteMilestone(Long projectId, Long milestoneId) {
-        // FIXME: projectId?
         milestoneRepository.deleteById(milestoneId);
 
         Map<String, Boolean> payload = new HashMap<>();

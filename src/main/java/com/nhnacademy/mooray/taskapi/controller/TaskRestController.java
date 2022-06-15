@@ -17,9 +17,6 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-/**
- * TODO: Project 멤버는 Task 를 등록, 수정, 삭제 할 수 있습니다.
- */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -31,8 +28,7 @@ public class TaskRestController {
     public ResponseEntity<MoorayResult<Task>> createTask(@PathVariable Long id,
                                                          @Valid @RequestBody TaskCreationRequest taskRequest) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter createTask(..)");
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter createTask(..)");
 
         MoorayResult<Task> result = taskService.createTask(id, taskRequest);
 
@@ -43,8 +39,8 @@ public class TaskRestController {
 
     @GetMapping("/projects/{project-id}/tasks")
     public ResponseEntity<MoorayResult<List<Task>>> retrieveTasks(@PathVariable("project-id") Long projectId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTasks()");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTasks()");
 
         MoorayResult<List<Task>> result = taskService.retrieveTasks(projectId);
 
@@ -56,8 +52,8 @@ public class TaskRestController {
     @GetMapping("/projects/{project-id}/tasks/{task-id}")
     public ResponseEntity<MoorayResult<Task>> retrieveTask(@PathVariable("project-id") Long projectId,
                                                            @PathVariable("task-id") Long taskId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTask(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTask(..)");
 
         MoorayResult<Task> result = taskService.retrieveTask(projectId);
 
@@ -70,8 +66,8 @@ public class TaskRestController {
     public ResponseEntity<MoorayResult<Task>> updateTask(@PathVariable("project-id") Long projectId,
                                                          @PathVariable("task-id") Long taskId,
                                                          @Valid @RequestBody TaskUpdateRequest taskRequest) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTask(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTask(..)");
 
         MoorayResult<Task> result = taskService.updateTask(projectId, taskRequest);
 
@@ -83,8 +79,8 @@ public class TaskRestController {
     @DeleteMapping("/projects/{project-id}/tasks/{task-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteTask(@PathVariable("project-id") Long projectId,
                                                             @PathVariable("task-id") Long taskId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 
         MoorayResult<Boolean> result = taskService.deleteTask(taskId);
 

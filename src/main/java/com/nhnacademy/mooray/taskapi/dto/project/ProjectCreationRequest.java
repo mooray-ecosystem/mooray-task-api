@@ -1,6 +1,5 @@
 package com.nhnacademy.mooray.taskapi.dto.project;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

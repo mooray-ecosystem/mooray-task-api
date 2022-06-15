@@ -2,7 +2,6 @@ package com.nhnacademy.mooray.taskapi.repository;
 
 import com.nhnacademy.mooray.taskapi.dto.project.ProjectCreationRequest;
 import com.nhnacademy.mooray.taskapi.entity.Project;
-import com.nhnacademy.mooray.taskapi.repository.ProjectRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// MEMO: DataJpaTest 내부에 @Transactional 이 있음
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectRepositoryTest {

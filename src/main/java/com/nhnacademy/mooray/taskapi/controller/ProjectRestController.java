@@ -27,11 +27,8 @@ public class ProjectRestController {
     @PostMapping("/projects")
     public ResponseEntity<Map<String, Object>>
     createProject(@Valid @RequestBody ProjectCreationRequest projectRequest) {
+        log.info("c.n.mooray.taskapi.controller.ProjectRestController: Enter createProject");
 
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter createProject");
-
-        // TODO: 게이트웨이에서 관리자인지 체크 여부 로직 있어야 함
         MoorayResult projectResponse = projectService.createProject(projectRequest);
 
         return ResponseEntity.status(CREATED)
@@ -43,8 +40,7 @@ public class ProjectRestController {
     @PutMapping("/projects/{id}")
     public ResponseEntity<Map<String, Object>> updateProject(@PathVariable("id") Long id,
                                                              @Valid @RequestBody ProjectUpdateRequest projectRequest) {
-        // FIXME: Refactor logging
-        log.error("c.n.mooray.taskapi.controller.ProjectRestController: Enter updateProject");
+        log.info("c.n.mooray.taskapi.controller.ProjectRestController: Enter updateProject");
 
         MoorayResult projectResponse = projectService.updateProject(id, projectRequest);
 

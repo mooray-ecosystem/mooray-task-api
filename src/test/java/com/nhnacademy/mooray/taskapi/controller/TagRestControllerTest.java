@@ -58,7 +58,6 @@ class TagRestControllerTest {
     @DisplayName("생성된 특정 프로젝트에서 존재하는 태그 1건을 정상적으로 조회합니다.")
     @Test
     void testRetrieveTag() throws Exception {
-        // FIXME: requestBody
         String requestBody = objectMapper.writeValueAsString(TagUpdateRequest.sample());
 
         this.mockMvc.perform(get("/projects/{project-id}/tags/{tag-id}", 1L, 1L)

@@ -29,8 +29,7 @@ public class MilestoneRestController {
                                                                    @Valid @RequestBody
                                                                    MilestoneCreationRequest milestoneRequest) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.MilestoneRestController: Enter createMilestone(...)");
+        log.info("c.n.mooray.taskapi.controller.MilestoneRestController: Enter createMilestone(...)");
 
         MoorayResult<Milestone> result = milestoneService.createMilestone(projectId, milestoneRequest);
 
@@ -43,8 +42,7 @@ public class MilestoneRestController {
     public ResponseEntity<MoorayResult<List<Milestone>>> retrieveMilestones(@PathVariable("project-id")
                                                                             Long projectId) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveMilestones()");
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveMilestones()");
 
         MoorayResult<List<Milestone>> result = milestoneService.retrieveMilestones(projectId);
 
@@ -56,8 +54,8 @@ public class MilestoneRestController {
     @GetMapping("/projects/{project-id}/milestones/{milestone-id}")
     public ResponseEntity<MoorayResult<Milestone>> retrieveMilestone(@PathVariable("project-id") Long projectId,
                                                                      @PathVariable("milestone-id") Long milestoneId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveMilestone(...)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveMilestone(...)");
 
         MoorayResult<Milestone> result = milestoneService.retrieveMilestone(projectId, milestoneId);
 
@@ -72,8 +70,7 @@ public class MilestoneRestController {
                                                                        @Valid @RequestBody
                                                                        MilestoneUpdateRequest milestoneRequest) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter updateMilestone(..)");
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter updateMilestone(...)");
 
         MoorayResult<Milestone> result = milestoneService.updateMilestone(projectId, milestoneId, milestoneRequest);
 
@@ -85,8 +82,8 @@ public class MilestoneRestController {
     @DeleteMapping("/projects/{project-id}/milestones/{milestone-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteMilestone(@PathVariable("project-id") Long projectId,
                                                                  @PathVariable("milestone-id") Long milestoneId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 
         MoorayResult<Boolean> result = milestoneService.deleteMilestone(projectId, milestoneId);
 

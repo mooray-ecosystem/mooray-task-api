@@ -29,8 +29,7 @@ public class TagRestController {
                                                        @Valid @RequestBody
                                                        TagCreationRequest tagRequest) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TagRestController: Enter createTag(...)");
+        log.info("c.n.mooray.taskapi.controller.TagRestController: Enter createTag(...)");
 
         MoorayResult<Tag> result = tagService.createTag(projectId, tagRequest);
 
@@ -43,8 +42,7 @@ public class TagRestController {
     public ResponseEntity<MoorayResult<List<Tag>>> retrieveTags(@PathVariable("project-id")
                                                                 Long projectId) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTags()");
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTags()");
 
         MoorayResult<List<Tag>> result = tagService.retrieveTags(projectId);
 
@@ -56,8 +54,8 @@ public class TagRestController {
     @GetMapping("/projects/{project-id}/tags/{tag-id}")
     public ResponseEntity<MoorayResult<Tag>> retrieveTag(@PathVariable("project-id") Long projectId,
                                                          @PathVariable("tag-id") Long tagId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTag(...)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter retrieveTag(...)");
 
         MoorayResult<Tag> result = tagService.retrieveTag(projectId, tagId);
 
@@ -72,8 +70,8 @@ public class TagRestController {
                                                            @Valid @RequestBody
                                                            TagUpdateRequest tagRequest) {
 
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTag(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter updateTag(..)");
 
         MoorayResult<Tag> result = tagService.updateTag(projectId, tagId, tagRequest);
 
@@ -85,8 +83,8 @@ public class TagRestController {
     @DeleteMapping("/projects/{project-id}/tags/{tag-id}")
     public ResponseEntity<MoorayResult<Boolean>> deleteTag(@PathVariable("project-id") Long projectId,
                                                            @PathVariable("tag-id") Long tagId) {
-        // FIXME: Remove logging
-        log.error("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
+
+        log.info("c.n.mooray.taskapi.controller.TaskRestController: Enter deleteTask(..)");
 
         MoorayResult<Boolean> result = tagService.deleteTag(projectId, tagId);
 

@@ -10,9 +10,9 @@ import java.util.Map;
 public class MoorayResult<V> {
 
     // private static final Map<String, Object> header;
-
     private final boolean isSuccess;
     private final String message;
+
     private final Map<String, V> payload;
 
     public MoorayResult(boolean isSuccess, String message, Map<String, V> payload) {
